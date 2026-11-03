@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Activity, BookOpen, BrainCircuit, Github, RotateCcw, Target, CircleHelp, ChevronRight } from 'lucide-react'
+import { Activity, BookOpen, BrainCircuit, Github, RotateCcw, Target, CircleHelp, ChevronRight, BarChart3 } from 'lucide-react'
 import { classify, datasets } from './knn'
 import AdvancedLab from './AdvancedLab'
 
