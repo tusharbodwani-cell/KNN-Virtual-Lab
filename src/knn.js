@@ -15,9 +15,10 @@ export function distance(a,b,metric='euclidean') {
   return metric==='manhattan' ? dx+dy : Math.hypot(dx,dy)
 }
 export function classify(points,query,k,metric) {
-  const nearest=points.map((p,index)=>({...p,index,distance:distance(p,query,metric)})).sort((a,b)=>a.distance-b.distance).slice(0,k)
+  const nearest=points.map((p,index)=>({...p,index,distance:distance(p,query,metric)})).sort((a,b)=>a.distance-b.distance)
+  const selected=nearest.slice(0,Math.max(1,Math.min(Number(k)||1,nearest.length)))
   const counts={}
-  nearest.forEach(p=>counts[p.label]=(counts[p.label]||0)+1)
-  const prediction=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0]?.[0]??'Unknown'
-  return {nearest,prediction,counts}
+  selected.forEach(p=>counts[p.label]=(counts[p.label]||0)+1)
+  const prediction=Object.entries(counts).sort((a,b)=>b[1]-a[1] || a[0].localeCompare(b[0]))[0]?.[0]??'Unknown'
+  return {nearest,selected,prediction,counts}
 }
