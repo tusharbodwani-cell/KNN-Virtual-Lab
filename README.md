@@ -1,6 +1,6 @@
-# KNN Virtual Lab
+# KNN + SVM Virtual Lab
 
-An interactive educational virtual laboratory for understanding the **K-Nearest Neighbors (KNN)** machine learning algorithm. Built with React and Vite.
+An interactive educational virtual laboratory for comparing **K-Nearest Neighbors (KNN)** and **Support Vector Machines (SVM)**. Built with React and Vite.
 
 ## Features
 - Interactive 2D scatter plot showing training samples, query point, and nearest-neighbor connections
@@ -9,6 +9,10 @@ An interactive educational virtual laboratory for understanding the **K-Nearest 
 - Live nearest-neighbor ranking, distances, and majority-vote prediction
 - Two sample datasets: flower classification and student performance
 - Guided experiments, concept explanations, and a knowledge-check assessment
+- Linear, polynomial and RBF-kernel SVM simulation with adjustable C and gamma parameters
+- Visual decision regions, support vectors and approximate margin bands
+- Side-by-side KNN and SVM prediction and performance comparison
+- Theory section covering KNN, SVM, kernels, margins and model selection
 - Responsive interface
 
 ## Run locally
@@ -30,6 +34,8 @@ The included GitHub Actions workflow builds and deploys the project to GitHub Pa
 
 ## Learning outcomes
 1. Explain the KNN classification process.
+2. Explain SVM hyperplanes, support vectors and margins.
+3. Compare linear and kernelized SVM models with KNN.
 2. Understand how K affects predictions.
 3. Compare Euclidean and Manhattan distances.
 4. Identify nearest neighbors and apply majority voting.
