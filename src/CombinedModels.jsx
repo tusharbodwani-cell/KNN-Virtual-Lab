@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { BrainCircuit, GitCompareArrows } from 'lucide-react'
-import { trainSVM, evaluateSelectedModels } from './svm'
+import { trainSVM, evaluateSelectedModels } from './svm'\nimport { classify } from './knn'
 
 const colors={Setosa:'#60a5fa',Versicolor:'#a78bfa',Virginica:'#34d399','Needs support':'#fb7185',Average:'#fbbf24','High performer':'#34d399'}
 const colorFor=label=>colors[label]||`hsl(${[...String(label)].reduce((a,c)=>a+c.charCodeAt(0),0)%360} 65% 55%)`
@@ -13,7 +13,7 @@ export default function CombinedModels({points,query,k,metric,maxX,maxY}){
   const [kernel,setKernel]=useState('rbf'),[C,setC]=useState(2),[gamma,setGamma]=useState(.5)
   const sampled=useMemo(()=>trainingSample(points),[points])
   const model=useMemo(()=>{try{return trainSVM(sampled,kernel,C,gamma)}catch(error){return {error:error.message}}},[sampled,kernel,C,gamma])
-  const prediction=model.error?null:model.predict(query)
+  const prediction=model.error?null:model.predict(query)\n  const knnPrediction=classify(points,query,k,metric).prediction
   const comparison=useMemo(()=>evaluateSelectedModels(points,k,metric,C,gamma),[points,k,metric,C,gamma])
   const cells=useMemo(()=>{
     if(model.error)return []
@@ -38,7 +38,7 @@ export default function CombinedModels({points,query,k,metric,maxX,maxY}){
       </div>
       <div className="combined-prediction">
         <h3>Prediction for the same query point</h3>
-        <div className="prediction-pair"><article><small>KNN · K={k}</small><strong>{comparison.error?'—':comparison.knn?points.length&&'Calculated':''}</strong><b>{comparison.error?'Unavailable': 'See comparison below'}</b></article><article><small>{kernel.toUpperCase()} SVM</small><strong style={{color:prediction?colorFor(prediction):undefined}}>{prediction||'Unavailable'}</strong><b>{support.length} support-vector entries</b></article></div>
+        <div className="prediction-pair"><article><small>KNN · K={k}</small><strong style={{color:colorFor(knnPrediction)}}>{knnPrediction}</strong><b>{metric} · majority vote</b></article><article><small>{kernel.toUpperCase()} SVM</small><strong style={{color:prediction?colorFor(prediction):undefined}}>{prediction||'Unavailable'}</strong><b>{support.length} support-vector entries</b></article></div>
         {model.error&&<p className="upload-error">{model.error}</p>}
         <p className="hint">The KNN prediction for the movable orange query point is shown in the main simulator above. The SVM prediction updates when you change the query point, kernel, C or gamma.</p>
       </div>
