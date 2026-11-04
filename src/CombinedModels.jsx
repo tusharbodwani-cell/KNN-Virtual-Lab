@@ -5,7 +5,7 @@ import { classify } from './knn'
 
 const colors={Setosa:'#60a5fa',Versicolor:'#a78bfa',Virginica:'#34d399','Needs support':'#fb7185',Average:'#fbbf24','High performer':'#34d399'}
 const colorFor=label=>colors[label]||`hsl(${[...String(label)].reduce((a,c)=>a+c.charCodeAt(0),0)%360} 65% 55%)`
-function trainingSample(points,limit=6){
+function trainingSample(points,limit=4){
   const groups=new Map()
   points.forEach(p=>{if(!groups.has(p.label))groups.set(p.label,[]);groups.get(p.label).push(p)})
   return [...groups.values()].flatMap(group=>group.length>limit?Array.from({length:limit},(_,i)=>group[Math.floor(i*group.length/limit)]):group)
