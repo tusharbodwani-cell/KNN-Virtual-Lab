@@ -88,3 +88,15 @@ footer{color:#64748b}
 .learn-columns ul{margin:0;padding-left:18px;color:#475569;font-size:12px;line-height:1.8}
 .learn-conclusion{margin-top:26px}
 @media(max-width:680px){.learn-columns{grid-template-columns:1fr}}
+
+/* SVM theory, sample diagrams and measured model comparison */
+.svm-diagrams{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.svm-diagram-card{border:1px solid #dbe3ef;border-radius:10px;background:#f8fafc;padding:14px;min-width:0}
+.svm-diagram-card h4{font:600 13px 'Space Grotesk';color:#263b83;margin:0 0 8px}
+.svm-diagram-card svg{width:100%;height:auto;display:block;background:#fff;border-radius:7px}
+.svm-diagram-card p{font-size:10px;line-height:1.6;color:#64748b;margin:8px 0 0}
+.svm-result-meta{display:flex;gap:18px;flex-wrap:wrap;padding:12px 14px;margin:12px 0;background:#eef2ff;border-radius:8px;color:#475569;font-size:11px}
+.svm-result-meta b{color:#263b83}
+.model-comparison td:nth-child(3){font-weight:700;color:#263b83;white-space:nowrap}
+.model-comparison td{vertical-align:top}
+@media(max-width:680px){.svm-diagrams{grid-template-columns:1fr}.svm-result-meta{gap:9px;flex-direction:column}}
