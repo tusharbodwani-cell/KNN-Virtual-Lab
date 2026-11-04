@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Activity, BookOpen, BrainCircuit, Github, RotateCcw, Target, CircleHelp, ChevronRight, BarChart3 } from 'lucide-react'
 import { classify, datasets, get2DView } from './knn'
-import AdvancedLab from './AdvancedLab'\nimport { compareKNNandSVM } from './svm'
+import AdvancedLab from './AdvancedLab'
+import { compareKNNandSVM } from './svm'
 
 const palette = { Setosa:'#60a5fa', Versicolor:'#a78bfa', Virginica:'#34d399', 'Needs support':'#fb7185', Average:'#fbbf24', 'High performer':'#34d399' }
 const colorFor = label => palette[label] || `hsl(${[...String(label)].reduce((a,c)=>a+c.charCodeAt(0),0)%360} 68% 65%)`
