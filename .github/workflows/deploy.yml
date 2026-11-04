@@ -1,4 +1,4 @@
-name: Deploy KNN Virtual Lab
+name: Deploy KNN + SVM Virtual Lab
 on:
   push:
     branches: [main]
