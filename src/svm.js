@@ -13,7 +13,7 @@ function binarySMO(X,y,type,C,gamma){
   let bias=0,passes=0,steps=0
   const decision=i=>{let s=bias;for(let q=0;q<n;q++)if(alpha[q]>0)s+=alpha[q]*y[q]*K[q][i];return s}
   const errors=()=>X.map((_,i)=>decision(i)-y[i])
-  while(passes<6&&steps<1800){
+  const maxSteps=n>100?80:1800\n  while(passes<6&&steps<maxSteps){
     let changed=0
     const E=errors()
     for(let i=0;i<n;i++){
@@ -55,7 +55,7 @@ export function trainSVM(points,type='rbf',C=2,gamma=0.5){
   }
   return {predict,labels,supportVectors:models.flatMap(m=>m.support.map((v,i)=>({x:v.x[0]*stats.scale[0]+stats.mean[0],y:v.x[1]*stats.scale[1]+stats.mean[1],label:m.label}))),kernel:type,C,gamma}
 }
-function boundedSplit(points,capPerClass=8){
+function boundedSplit(points,capPerClass=4){
   const groups=new Map()
   points.forEach((p,i)=>{if(!groups.has(p.label))groups.set(p.label,[]);groups.get(p.label).push({...p,_index:i})})
   const train=[],test=[]
