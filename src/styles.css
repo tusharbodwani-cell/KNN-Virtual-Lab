@@ -100,3 +100,29 @@ footer{color:#64748b}
 .model-comparison td:nth-child(3){font-weight:700;color:#263b83;white-space:nowrap}
 .model-comparison td{vertical-align:top}
 @media(max-width:680px){.svm-diagrams{grid-template-columns:1fr}.svm-result-meta{gap:9px;flex-direction:column}}
+
+/* Integrated interactive KNN + SVM workbench */
+.combined-lab{margin-top:28px;max-width:1100px;padding:24px}
+.combined-heading{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.combined-heading .section-icon{margin:0;flex-shrink:0}
+.combined-heading h2{margin:0 0 5px;color:#17233b;font:600 20px 'Space Grotesk'}
+.combined-heading p{margin:0;color:#64748b;font-size:12px;line-height:1.6}
+.combined-grid{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,1.2fr);gap:16px}
+.combined-controls,.combined-prediction{padding:17px;border:1px solid #dbe3ef;border-radius:10px;background:#f8fafc;min-width:0}
+.combined-controls h3,.combined-prediction h3{font:600 14px 'Space Grotesk';color:#263b83;margin:0 0 14px}
+.combined-controls>label{display:grid;gap:7px;margin:12px 0;color:#64748b;font-size:10px;letter-spacing:1px;font-weight:700}
+.combined-controls select{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:7px;background:#fff;color:#1e293b}
+.combined-controls input[type=range]{width:100%;accent-color:#5268c5}
+.svm-parameter-note{margin-top:16px;padding:12px;background:#eef2ff;border-radius:8px}
+.svm-parameter-note b{font-size:11px;color:#263b83}
+.svm-parameter-note p{font-size:11px;line-height:1.6;color:#475569;margin:5px 0 0}
+.prediction-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.prediction-pair article{padding:14px;background:#fff;border:1px solid #dbe3ef;border-radius:8px;min-width:0}
+.prediction-pair small,.prediction-pair b{display:block;color:#64748b;font-size:10px}
+.prediction-pair strong{display:block;font:700 18px 'Space Grotesk';margin:10px 0;overflow-wrap:anywhere}
+.combined-prediction>.hint{margin-top:14px;line-height:1.6}
+.combined-chart{border:1px solid #dbe3ef;border-radius:9px;overflow:hidden;background:#fff}
+.combined-chart svg{display:block;width:100%;height:auto;max-height:420px}
+.support-dot{display:inline-block;width:9px;height:9px;border:2px solid #111827;border-radius:50%;background:transparent}
+.model-comparison td small{display:block;font-size:9px;color:#64748b;font-weight:400;margin-top:4px}
+@media(max-width:760px){.combined-grid{grid-template-columns:1fr}.combined-lab{padding:15px}.prediction-pair{grid-template-columns:1fr 1fr}}
