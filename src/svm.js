@@ -50,11 +50,12 @@ export function trainSVM(points,type='rbf',C=2,gamma=0.5){
   if(points.length<4||labels.length<2)throw new Error('SVM needs at least four labelled samples from two or more classes.')
   const stats=statsFor(points),X=points.map(p=>transform(p,stats))
   const models=labels.map(label=>({label,...binarySMO(X,points.map(p=>p.label===label?1:-1),type,Number(C),Number(gamma))}))
-  const predict=point=>{
+  const decisionScores=point=>{
     const z=transform(point,stats)
-    return models.map(m=>({label:m.label,score:m.score(z)})).sort((a,b)=>b.score-a.score)[0].label
+    return models.map(m=>({label:m.label,score:m.score(z)})).sort((a,b)=>b.score-a.score)
   }
-  return {predict,labels,supportVectors:models.flatMap(m=>m.support.map((v,i)=>({x:v.x[0]*stats.scale[0]+stats.mean[0],y:v.x[1]*stats.scale[1]+stats.mean[1],label:m.label}))),kernel:type,C,gamma}
+  const predict=point=>decisionScores(point)[0].label
+  return {predict,decisionScores,labels,supportVectors:models.flatMap(m=>m.support.map(v=>({x:v.x[0]*stats.scale[0]+stats.mean[0],y:v.x[1]*stats.scale[1]+stats.mean[1],label:m.label}))),kernel:type,C,gamma}
 }
 function boundedSplit(points,capPerClass=4){
   const groups=new Map()
