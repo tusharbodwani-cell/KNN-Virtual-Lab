@@ -13,7 +13,8 @@ function binarySMO(X,y,type,C,gamma){
   let bias=0,passes=0,steps=0
   const decision=i=>{let s=bias;for(let q=0;q<n;q++)if(alpha[q]>0)s+=alpha[q]*y[q]*K[q][i];return s}
   const errors=()=>X.map((_,i)=>decision(i)-y[i])
-  const maxSteps=n>100?80:1800\n  while(passes<6&&steps<maxSteps){
+  const maxSteps=n>100?80:1800
+  while(passes<6&&steps<maxSteps){
     let changed=0
     const E=errors()
     for(let i=0;i<n;i++){
