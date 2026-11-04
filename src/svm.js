@@ -18,7 +18,7 @@ function trainBinarySVM(X,y,type,C=2,gamma=0.5){
     for(let i=0;i<n;i++){
       const Ei=decision(i)-y[i]
       if(!((y[i]*Ei < -eps && alpha[i]<C-eps)||(y[i]*Ei>eps&&alpha[i]>eps)))continue
-      let j=(i+1+Math.floor(Math.random()*(n-1)))%n
+      let j=(i+1+(iterations%(n-1)))%n
       let Ej=decision(j)-y[j], ai=alpha[i], aj=alpha[j], L,H
       if(y[i]!==y[j]){L=Math.max(0,aj-ai);H=Math.min(C,C+aj-ai)}
       else{L=Math.max(0,ai+aj-C);H=Math.min(C,ai+aj)}
