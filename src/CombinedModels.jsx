@@ -22,7 +22,8 @@ export default function CombinedModels({points,query,k,metric,maxX,maxY}){
     const cols=48,rows=28,out=[]
     for(let iy=0;iy<rows;iy++)for(let ix=0;ix<cols;ix++){
       const x=(ix+.5)/cols*maxX,y=(1-(iy+.5)/rows)*maxY
-      const scores=model.decisionScores({x,y}),winner=scores[0]\n      out.push({x:ix*600/cols,y:iy*330/rows,label:winner.label,margin:Math.abs(winner.score)})
+      const scores=model.decisionScores({x,y}),winner=scores[0]
+      out.push({x:ix*600/cols,y:iy*330/rows,label:winner.label,margin:Math.abs(winner.score)})
     }
     return out
   },[model,maxX,maxY])
