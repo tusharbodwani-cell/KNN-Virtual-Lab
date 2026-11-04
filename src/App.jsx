@@ -34,6 +34,7 @@ export default function App() {
   const maxX=view.maxX, maxY=view.maxY
   const X=x=>55+x/maxX*550, Y=y=>350-y/maxY*310
   const nearest=new Set(result.selected.map(p=>p.index))
+  const modelComparison=useMemo(()=>{try{return compareKNNandSVM(plotPoints,5)}catch(error){return {error:error.message}}},[plotPoints])
   const nav=[['Simulator',Activity],['Learn KNN',BookOpen],['Assessment',CircleHelp],['Dataset & Metrics',BarChart3]]
   const reset=()=>{setK(5);setMetric('euclidean');setQuery({x:maxX/2,y:maxY/2})}
   return <div className="shell"><aside className="sidebar"><div className="brand"><div className="brandmark"><BrainCircuit/></div><div><b>KNN Virtual Lab</b><small>Machine Learning Studio</small></div></div><p className="side-caption">WORKSPACE</p>{nav.map(([name,Icon])=><button key={name} className={'nav '+(page===name?'active':'')} onClick={()=>setPage(name)}><Icon size={18}/>{name}{page===name&&<ChevronRight className="nav-chevron" size={16}/>}</button>)}<div className="side-bottom"><p className="side-caption">ABOUT THIS LAB</p><p>Explore how a machine learning algorithm learns from nearby data and makes predictions.</p><a href="https://github.com/tusharbodwani-cell/KNN-Virtual-Lab" target="_blank" rel="noreferrer"><Github size={15}/> Repository ↗</a></div></aside>
